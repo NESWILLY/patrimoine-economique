@@ -4,7 +4,7 @@ import CalculateurPatrimoine from './composants/CalculateurPatrimoine';
 import Patrimoine from '../models/Patrimoine';
 import Personne from '../models/Personne';
 import data from '../data/data.json';
-import './styles/main.css';
+import './App.css';
 
 const App = () => {
   const [personne, setPersonne] = useState(null);
