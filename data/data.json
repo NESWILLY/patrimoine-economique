@@ -1,43 +1,90 @@
 [
   {
     "model": "Personne",
-    "data": { "nom": "John Doe" }
+    "data": {
+      "nom": "John"
+    }
+  },
+  {
+    "model": "Personne",
+    "data": {
+      "nom": "Smith"
+    }
+  },
+  {
+    "model": "Personne",
+    "data": {
+      "nom": "Alice"
+    }
   },
   {
     "model": "Patrimoine",
     "data": {
-      "possesseur": { "nom": "John Doe" },
+      "nomPersonne": "John",
       "possessions": [
         {
+          "type": "Argent",
+          "libelle": "Compte Bancaire",
+          "valeur": 10000,
+          "dateDebut": "2020-01-01",
+          "dateFin": null,
+          "tauxAmortissement": 0
+        },
+        {
           "type": "BienMateriel",
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "MacBook Pro",
-          "valeur": 4000000,
-          "dateDebut": "2023-12-25T00:00:00.000Z",
+          "libelle": "Voiture",
+          "valeur": 15000,
+          "dateDebut": "2019-06-01",
+          "dateFin": null,
+          "tauxAmortissement": 10
+        }
+      ]
+    }
+  },
+  {
+    "model": "Patrimoine",
+    "data": {
+      "nomPersonne": "Smith",
+      "possessions": [
+        {
+          "type": "Argent",
+          "libelle": "Épargne",
+          "valeur": 5000,
+          "dateDebut": "2021-01-01",
+          "dateFin": null,
+          "tauxAmortissement": 1
+        },
+        {
+          "type": "BienMateriel",
+          "libelle": "Ordinateur",
+          "valeur": 2000,
+          "dateDebut": "2022-03-01",
+          "dateFin": null,
+          "tauxAmortissement": 15
+        }
+      ]
+    }
+  },
+  {
+    "model": "Patrimoine",
+    "data": {
+      "nomPersonne": "Alice",
+      "possessions": [
+        {
+          "type": "Argent",
+          "libelle": "Investissements",
+          "valeur": 15000,
+          "dateDebut": "2018-05-01",
+          "dateFin": null,
+          "tauxAmortissement": 2
+        },
+        {
+          "type": "BienMateriel",
+          "libelle": "Maison",
+          "valeur": 120000,
+          "dateDebut": "2015-09-01",
           "dateFin": null,
           "tauxAmortissement": 5
-        },
-        {
-          "type": "Flux",
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Alternance",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
-          "dateFin": null,
-          "tauxAmortissement": null,
-          "jour": 1,
-          "valeurConstante": 500000
-        },
-        {
-          "type": "Flux",
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Survie",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
-          "dateFin": null,
-          "tauxAmortissement": null,
-          "jour": 2,
-          "valeurConstante": -300000
         }
       ]
     }

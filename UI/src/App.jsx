@@ -10,26 +10,34 @@ import data from '../../data/data.json';
 import './App.css';
 
 const App = () => {
+  const [personnes, setPersonnes] = useState([]);
+  const [selectedPerson, setSelectedPerson] = useState(null);
   const [personne, setPersonne] = useState(null);
   const [valeurTotale, setValeurTotale] = useState(0);
 
   useEffect(() => {
-    const personneData = data.find((item) => item.model === 'Personne');
-    const patrimoineData = data.find((item) => item.model === 'Patrimoine');
+    const personnesData = data.filter((item) => item.model === 'Personne');
+    
+    if (personnesData.length > 0) {
+      setPersonnes(personnesData.map(item => item.data.nom));
+      const initialPersonne = personnesData[0].data.nom;
+      setSelectedPerson(initialPersonne);
+      updatePersonne(initialPersonne);
+    }
+  }, []);
 
-    if (personneData && patrimoineData) {
-      const possesseur = new Personne(personneData.data.nom);
+  const updatePersonne = (nomPersonne) => {
+    const patrimoineData = data.find((item) => item.model === 'Patrimoine' && item.data.nomPersonne === nomPersonne);
+
+    if (patrimoineData) {
+      const possesseur = new Personne(nomPersonne);
 
       const possessions = patrimoineData.data.possessions.map((possession) => {
-        // Afficher les données de chaque possession pour le débogage
-        console.log('Possession:', possession);
-
         if (!possession.type) {
           console.error('Type de possession manquant:', possession);
           return null;
         }
 
-        // Gestion des dates nulles
         const dateDebut = possession.dateDebut ? new Date(possession.dateDebut) : null;
         const dateFin = possession.dateFin ? new Date(possession.dateFin) : null;
 
@@ -73,7 +81,13 @@ const App = () => {
       setPersonne(patrimoine);
       setValeurTotale(patrimoine.getValeur(new Date()).toFixed(2));
     }
-  }, []);
+  };
+
+  const handlePersonChange = (event) => {
+    const newPerson = event.target.value;
+    setSelectedPerson(newPerson);
+    updatePersonne(newPerson);
+  };
 
   const calculerValeurPatrimoine = (date) => {
     if (personne) {
@@ -85,6 +99,11 @@ const App = () => {
   return (
     <div className="container">
       <h1>Gestion du Patrimoine</h1>
+      <select value={selectedPerson} onChange={handlePersonChange}>
+        {personnes.map((personne, index) => (
+          <option key={index} value={personne}>{personne}</option>
+        ))}
+      </select>
       <CalculateurPatrimoine calculerValeurPatrimoine={calculerValeurPatrimoine} />
       {personne && <TableauPossessions possessions={personne.possessions} />}
       <h2>Valeur Totale : {valeurTotale} FMG</h2>
