@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TableauPossessions from './composants/TableauPossessions';
 import CalculateurPatrimoine from './composants/CalculateurPatrimoine';
-import Argent from '../../models/Possessions/Argent';
-import BienMateriel from '../../models/Possessions/BienMateriel';
-import Flux from '../../models/Possessions/Flux';
+import Argent from '../../models/possessions/Argent';
+import BienMateriel from '../../models/possessions/BienMateriel';
+import Flux from '../../models/possessions/Flux';
 import Patrimoine from '../../models/Patrimoine';
 import Personne from '../../models/Personne';
 import data from '../../data/data.json';
