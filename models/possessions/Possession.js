@@ -16,6 +16,11 @@ export default class Possession {
     if (dateActuelle < this.dateDebut) {
       return 0;
     }
+  
+    if (!this.tauxAmortissement) {
+      return this.valeur; // Retourner la valeur si aucun amortissement n'est défini
+    }
+  
     const differenceDate = {
       year: dateActuelle.getFullYear() - this.dateDebut.getFullYear(),
       month: dateActuelle.getMonth() - this.dateDebut.getMonth(),
@@ -23,8 +28,8 @@ export default class Possession {
     };
   
     var raison = differenceDate.year + differenceDate.month / 12 + differenceDate.day / 365;
-
-    const result = this.valeur - this.valeur *(raison * this.tauxAmortissement / 100);
+    const result = this.valeur - this.valeur * (raison * this.tauxAmortissement / 100);
     return result;
   }
+  
 }
