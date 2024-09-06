@@ -5,6 +5,7 @@ export default class BienMateriel extends Possession {
   }
 
   getValeur(date) {
-    super.getValeur(date);
-  }
+    // On peut ajouter des traitements spécifiques ici si nécessaire
+    return super.getValeur(date);
+  }  
 }
