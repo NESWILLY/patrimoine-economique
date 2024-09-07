@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-const TableauPossessions = ({ possessions }) => {
+const TableauPossessions = ({ possessions, dateEvaluation }) => {  // Ajout de dateEvaluation
 
   // Fonction pour calculer la valeur actuelle d'une possession
   const calculerValeurActuelle = (possession) => {
@@ -13,10 +13,9 @@ const TableauPossessions = ({ possessions }) => {
         return valeur.toFixed(2);  // Valeur inchangée si taux d'amortissement est 0
       }
 
-      // Calcul du temps écoulé en années
-      const dateNow = new Date();  // Date actuelle
+      // Calcul du temps écoulé en années entre dateDebut et dateEvaluation
       const dateDebutObj = new Date(dateDebut);
-      const yearsElapsed = (dateNow - dateDebutObj) / (1000 * 60 * 60 * 24 * 365.25);
+      const yearsElapsed = (dateEvaluation - dateDebutObj) / (1000 * 60 * 60 * 24 * 365.25);
 
       // Calcul de l'amortissement total
       const amortissement = valeur * (tauxAmortissement / 100) * yearsElapsed;
