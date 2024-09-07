@@ -13,7 +13,7 @@ const CalculateurPatrimoine = ({ calculerValeurPatrimoine }) => {
       calculerValeurPatrimoine(date);
       setMessage("Calcul effectué avec succès !");
     } else {
-      setMessage("Veuillez sélectionner une date valide.");
+      setMessage("Veuillez sélectionner une date valide: dd/mm/yyyy");
     }
   };
 
