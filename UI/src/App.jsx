@@ -14,6 +14,7 @@ const App = () => {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [personne, setPersonne] = useState(null);
   const [valeurTotale, setValeurTotale] = useState(0);
+  const [dateEvaluation, setDateEvaluation] = useState(new Date()); // Ajout d'une variable pour la date
 
   useEffect(() => {
     const personnesData = data.filter((item) => item.model === 'Personne');
@@ -33,22 +34,14 @@ const App = () => {
       const possesseur = new Personne(nomPersonne);
 
       const possessions = patrimoineData.data.possessions.map((possession) => {
-        if (!possession.type) {
-          console.error('Type de possession manquant:', possession);
-          return null;
-        }
-
-        const dateDebut = possession.dateDebut ? new Date(possession.dateDebut) : null;
-        const dateFin = possession.dateFin ? new Date(possession.dateFin) : null;
-
         switch (possession.type) {
           case 'Argent':
             return new Argent(
               possesseur,
               possession.libelle,
               possession.valeur,
-              dateDebut,
-              dateFin,
+              new Date(possession.dateDebut),
+              new Date(possession.dateFin),
               possession.tauxAmortissement
             );
           case 'BienMateriel':
@@ -56,8 +49,8 @@ const App = () => {
               possesseur,
               possession.libelle,
               possession.valeur,
-              dateDebut,
-              dateFin,
+              new Date(possession.dateDebut),
+              new Date(possession.dateFin),
               possession.tauxAmortissement
             );
           case 'Flux':
@@ -65,8 +58,8 @@ const App = () => {
               possesseur,
               possession.libelle,
               possession.valeur,
-              dateDebut,
-              dateFin,
+              new Date(possession.dateDebut),
+              new Date(possession.dateFin),
               possession.tauxAmortissement,
               possession.jour,
               possession.valeurConstante
@@ -79,7 +72,7 @@ const App = () => {
 
       const patrimoine = new Patrimoine(possesseur, possessions);
       setPersonne(patrimoine);
-      setValeurTotale(patrimoine.getValeur(new Date()).toFixed(2));
+      setValeurTotale(patrimoine.getValeur(dateEvaluation).toFixed(2)); // Valeur en fonction de la date d'évaluation
     }
   };
 
@@ -90,6 +83,7 @@ const App = () => {
   };
 
   const calculerValeurPatrimoine = (date) => {
+    setDateEvaluation(date); // Mettre à jour la date d'évaluation
     if (personne) {
       const total = personne.getValeur(date);
       setValeurTotale(total.toFixed(2));
@@ -105,8 +99,8 @@ const App = () => {
         ))}
       </select>
       <CalculateurPatrimoine calculerValeurPatrimoine={calculerValeurPatrimoine} />
-      {personne && <TableauPossessions possessions={personne.possessions} />}
-      <h2>Valeur Totale : {valeurTotale} FMG</h2>
+      {personne && <TableauPossessions possessions={personne.possessions} dateEvaluation={dateEvaluation} />} {/* Pass date */}
+      <h2>Valeur Totale : {valeurTotale} Ar</h2>
     </div>
   );
 };
