@@ -110,7 +110,6 @@ const App = () => {
         ))}
       </select>
 
-      <p>Veuillez entrer les dates au format <strong>jj/mm/aaaa</strong>.</p>
       <CalculateurPatrimoine calculerValeurPatrimoine={calculerValeurPatrimoine} />
       
       {personne && (

@@ -1,21 +1,105 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  width: 100vw;
+}
+
+/* Style du conteneur principal */
 .container {
-  margin: 20px;
+  background-color: #bdc994;
+  padding: 20px;
+  border-radius: 10px;
   font-family: Arial, sans-serif;
+  max-width: auto;
+  max-width: 90%; /* Largeur maximale du conteneur pour l'adaptabilité */
+  width: 600px;
 }
 
-h1 {
-  color: #333;
+/* Style pour le titre */
+.container h1 {
+  color: #0056b3;
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-h2 {
-  color: #555;
-}
-
-table {
-  width: 100%;
+.container h2 {
+  color: #cf5d28;
+  text-align: center;
   margin-top: 20px;
+  font-size: 2em;
+  font-weight: 700;
 }
 
-button {
-  margin-top: 10px;
+/* Style pour les boutons */
+.calculateur-patrimoine button {
+  margin-top: 15px;
+  border: none;
+  outline: transparent;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+
+}
+
+.container label {
+  font-size: x-large;
+  margin-bottom: 15px;
+}
+
+#personneSelect {
+  font-size: larger;
+  background-color: #bb7250;
+  border: none;
+  outline: transparent;
+}
+
+/* Styles pour rendre la page responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    font-size: 14px; /* Réduction de la taille de la police pour les petits écrans */
+  }
+  
+  .container h1 {
+    font-size: 1.5em; /* Réduction de la taille du titre pour les petits écrans */
+  }
+  
+  .container h2 {
+    font-size: 1.2em; /* Réduction de la taille du titre pour les petits écrans */
+  }
+  
+  .calculateur-patrimoine button {
+    font-size: 14px; /* Réduction de la taille de la police des boutons */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+    font-size: 12px; /* Réduction supplémentaire de la taille de la police pour les très petits écrans */
+  }
+  
+  .container h1 {
+    font-size: 1.2em; /* Réduction de la taille du titre pour les très petits écrans */
+  }
+  
+  .container h2 {
+    font-size: 1em; /* Réduction de la taille du titre pour les très petits écrans */
+  }
+  
+  .calculateur-patrimoine button {
+    font-size: 12px; /* Réduction de la taille de la police des boutons */
+    padding: 5px 10px; /* Ajustement du padding des boutons */
+  }
 }

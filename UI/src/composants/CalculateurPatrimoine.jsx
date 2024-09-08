@@ -9,11 +9,10 @@ const CalculateurPatrimoine = ({ calculerValeurPatrimoine }) => {
   const [message, setMessage] = useState(null);
 
   const handleValidation = () => {
-    if (date) {
-      calculerValeurPatrimoine(date);
-      setMessage("Calcul effectué avec succès !");
-    } else {
+    if (!date) {
       setMessage("Veuillez sélectionner une date valide: dd/mm/yyyy");
+    } else {
+      calculerValeurPatrimoine(date);
     }
   };
 
@@ -21,7 +20,7 @@ const CalculateurPatrimoine = ({ calculerValeurPatrimoine }) => {
     <div className="calculateur-patrimoine">
       <h3>Sélectionner une date pour évaluer le patrimoine</h3>
       <DatePicker selected={date} onChange={(d) => setDate(d)} />
-      <Button variant="primary" onClick={handleValidation} style={{ marginLeft: '10px' }}>
+      <Button variant="primary" onClick={handleValidation} style={{ marginLeft: '20px' }}>
         Valider
       </Button>
       {message && <Alert variant="info" style={{ marginTop: '10px' }}>{message}</Alert>}
