@@ -41,8 +41,9 @@ const App = () => {
               possession.libelle,
               possession.valeur,
               new Date(possession.dateDebut),
-              new Date(possession.dateFin),
-              possession.tauxAmortissement
+              possession.dateFin ? new Date(possession.dateFin) : null,
+              possession.tauxAmortissement,
+              possession.type
             );
           case 'BienMateriel':
             return new BienMateriel(
@@ -50,8 +51,9 @@ const App = () => {
               possession.libelle,
               possession.valeur,
               new Date(possession.dateDebut),
-              new Date(possession.dateFin),
-              possession.tauxAmortissement
+              possession.dateFin ? new Date(possession.dateFin) : null,
+              possession.tauxAmortissement,
+              possession.type
             );
           case 'Flux':
             return new Flux(
@@ -59,7 +61,7 @@ const App = () => {
               possession.libelle,
               possession.valeur,
               new Date(possession.dateDebut),
-              new Date(possession.dateFin),
+              possession.dateFin ? new Date(possession.dateFin) : null,
               possession.tauxAmortissement,
               possession.jour,
               possession.valeurConstante
