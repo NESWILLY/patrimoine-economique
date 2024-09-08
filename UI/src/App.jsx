@@ -9,12 +9,18 @@ import Personne from '../../models/Personne';
 import data from '../../data/data.json';
 import './App.css';
 
+// Fonction pour convertir le format de date jj/mm/aaaa en objet Date
+const convertirDate = (dateStr) => {
+  const [jour, mois, annee] = dateStr.split('/');
+  return new Date(`${annee}-${mois}-${jour}`);
+};
+
 const App = () => {
   const [personnes, setPersonnes] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [personne, setPersonne] = useState(null);
   const [valeurTotale, setValeurTotale] = useState(0);
-  const [dateEvaluation, setDateEvaluation] = useState(new Date()); // Ajout d'une variable pour la date
+  const [dateEvaluation, setDateEvaluation] = useState(new Date()); // Variable pour la date
 
   useEffect(() => {
     const personnesData = data.filter((item) => item.model === 'Personne');
@@ -34,14 +40,16 @@ const App = () => {
       const possesseur = new Personne(nomPersonne);
 
       const possessions = patrimoineData.data.possessions.map((possession) => {
+        const dateDebut = convertirDate(possession.dateDebut); // Conversion de la date de début
+
         switch (possession.type) {
           case 'Argent':
             return new Argent(
               possesseur,
               possession.libelle,
               possession.valeur,
-              new Date(possession.dateDebut),
-              possession.dateFin ? new Date(possession.dateFin) : null,
+              dateDebut,
+              possession.dateFin ? convertirDate(possession.dateFin) : null,
               possession.tauxAmortissement,
               possession.type
             );
@@ -50,8 +58,8 @@ const App = () => {
               possesseur,
               possession.libelle,
               possession.valeur,
-              new Date(possession.dateDebut),
-              possession.dateFin ? new Date(possession.dateFin) : null,
+              dateDebut,
+              possession.dateFin ? convertirDate(possession.dateFin) : null,
               possession.tauxAmortissement,
               possession.type
             );
@@ -60,11 +68,11 @@ const App = () => {
               possesseur,
               possession.libelle,
               possession.valeur,
-              new Date(possession.dateDebut),
-              possession.dateFin ? new Date(possession.dateFin) : null,
+              dateDebut,
+              possession.dateFin ? convertirDate(possession.dateFin) : null,
               possession.tauxAmortissement,
               possession.jour,
-              possession.valeurConstante
+              possession.type
             );
           default:
             console.error(`Type de possession inconnu: ${possession.type}`);
@@ -85,7 +93,7 @@ const App = () => {
   };
 
   const calculerValeurPatrimoine = (date) => {
-    setDateEvaluation(date); // Mettre à jour la date d'évaluation
+    setDateEvaluation(date); // Mise à jour de la date d'évaluation
     if (personne) {
       const total = personne.getValeur(date);
       setValeurTotale(total.toFixed(2));
@@ -95,13 +103,20 @@ const App = () => {
   return (
     <div className="container">
       <h1>Gestion du Patrimoine</h1>
-      <select value={selectedPerson} onChange={handlePersonChange}>
+      <label htmlFor="personneSelect">Sélectionnez une personne :</label>
+      <select id="personneSelect" value={selectedPerson} onChange={handlePersonChange}>
         {personnes.map((personne, index) => (
           <option key={index} value={personne}>{personne}</option>
         ))}
       </select>
+
+      <p>Veuillez entrer les dates au format <strong>jj/mm/aaaa</strong>.</p>
       <CalculateurPatrimoine calculerValeurPatrimoine={calculerValeurPatrimoine} />
-      {personne && <TableauPossessions possessions={personne.possessions} dateEvaluation={dateEvaluation} />} {/* Pass date */}
+      
+      {personne && (
+        <TableauPossessions possessions={personne.possessions} dateEvaluation={dateEvaluation} />
+      )}
+      
       <h2>Valeur Totale : {valeurTotale} Ar</h2>
     </div>
   );

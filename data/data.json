@@ -24,9 +24,9 @@
       "possessions": [
         {
           "type": "Argent",
-          "libelle": "Compte Bancaire",
+          "libelle": "Espèces",
           "valeur": 10000,
-          "dateDebut": "2020-01-01",
+          "dateDebut": "01/01/2020",
           "dateFin": null,
           "tauxAmortissement": 0
         },
@@ -34,9 +34,19 @@
           "type": "BienMateriel",
           "libelle": "Voiture",
           "valeur": 15000,
-          "dateDebut": "2019-06-01",
+          "dateDebut": "01/06/2019",
           "dateFin": null,
           "tauxAmortissement": 10
+        },
+        {
+          "type": "Flux",
+          "libelle": "Loyer",
+          "valeur": 500,
+          "dateDebut": "01/01/2020",
+          "dateFin": null,
+          "tauxAmortissement": 0,
+          "jour": 1,
+          "valeurConstante": 500
         }
       ]
     }
@@ -48,19 +58,29 @@
       "possessions": [
         {
           "type": "Argent",
-          "libelle": "Épargne",
+          "libelle": "Compte bancaire épargne",
           "valeur": 5000,
-          "dateDebut": "2021-01-01",
+          "dateDebut": "01/01/2021",
           "dateFin": null,
           "tauxAmortissement": 1
         },
         {
           "type": "BienMateriel",
-          "libelle": "Ordinateur",
+          "libelle": "Matériel Informatique",
           "valeur": 2000,
-          "dateDebut": "2022-03-01",
+          "dateDebut": "01/03/2022",
           "dateFin": null,
           "tauxAmortissement": 15
+        },
+        {
+          "type": "Flux",
+          "libelle": "Nourriture",
+          "valeur": 100,
+          "dateDebut": "01/01/2021",
+          "dateFin": null,
+          "tauxAmortissement": 0,
+          "jour": 15,
+          "valeurConstante": 100
         }
       ]
     }
@@ -72,9 +92,9 @@
       "possessions": [
         {
           "type": "Argent",
-          "libelle": "Investissements",
+          "libelle": "Compte bancaire épargne",
           "valeur": 15000,
-          "dateDebut": "2018-05-01",
+          "dateDebut": "01/05/2018",
           "dateFin": null,
           "tauxAmortissement": 2
         },
@@ -82,9 +102,19 @@
           "type": "BienMateriel",
           "libelle": "Maison",
           "valeur": 120000,
-          "dateDebut": "2015-09-01",
+          "dateDebut": "01/09/2015",
           "dateFin": null,
           "tauxAmortissement": 5
+        },
+        {
+          "type": "Flux",
+          "libelle": "Frais de Transport",
+          "valeur": 300,
+          "dateDebut": "01/06/2020",
+          "dateFin": null,
+          "tauxAmortissement": 0,
+          "jour": 5,
+          "valeurConstante": 300
         }
       ]
     }
